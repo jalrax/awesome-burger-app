@@ -2,6 +2,7 @@ import React from 'react';
 import styled, { css } from 'styled-components';
 
 const button = (props) => {
+
     const Button = styled.button`
     background-color: transparent;
     border: none;

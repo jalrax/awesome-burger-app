@@ -20,13 +20,23 @@ const Wrapper = styled.div`
     
   & nav {
     height: 100%;
+    
+    @media (max-width: 499px) {
+        display: none;
+    }
   }
+`;
+
+const LogoContainer = styled.div`
+    height: 80%
 `;
 
 const toolbar = (props) => (
     <Wrapper>
         <div>MENU</div>
-        <Logo />
+        <LogoContainer>
+            <Logo />
+        </LogoContainer>
         <nav>
             <NavigationItems />
         </nav>
