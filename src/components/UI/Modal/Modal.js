@@ -1,6 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 
+import Backdrop from '../Backdrop/Backdrop';
+
 const Wrapper = styled.div`
     position: fixed;
     z-index: 500;
@@ -21,12 +23,15 @@ const Wrapper = styled.div`
 `;
 
 const modal = (props) => (
-    <Wrapper style={{
-        transform: props.show ? 'translateY(0)' : 'translateY(-100vh)',
-        opacity: props.show ? '1' : '0'
-    }}>
-        {props.children}
-    </Wrapper>
+    <React.Fragment>
+        <Backdrop show={props.show} clicked={props.modalClosed} />
+        <Wrapper style={{
+            transform: props.show ? 'translateY(0)' : 'translateY(-100vh)',
+            opacity: props.show ? '1' : '0'
+        }}>
+            {props.children}
+        </Wrapper>
+    </React.Fragment>
 );
 
 export default modal;

@@ -1,6 +1,9 @@
 import React from 'react';
 
+import Button from '../../UI/Button/Button';
+
 const orderSummary = (props) => {
+
     const ingredientSummary = Object.keys(props.ingredients)
         .map(igKey => {
             return (
@@ -9,6 +12,7 @@ const orderSummary = (props) => {
                 </li>
             );
         });
+
     return (
         <React.Fragment>
             <h3>Your Order</h3>
@@ -16,8 +20,12 @@ const orderSummary = (props) => {
             <ul>
                 {ingredientSummary}
             </ul>
+            <p><strong>Total Price: {props.price.toFixed(2)}</strong></p>
             <p>Proceed to checkout?</p>
+            <Button btnType={'danger'} clicked={props.purchaseCancelled}>CANCEL</Button>
+            <Button btnType={'success'} clicked={props.purchaseProceed}>PROCEED</Button>
         </React.Fragment>
     );
 };
+
 export default orderSummary;

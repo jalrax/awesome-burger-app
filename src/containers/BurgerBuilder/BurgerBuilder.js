@@ -76,8 +76,12 @@ class BurgerBuilder extends Component {
         this.setState({purchasing: true});
     };
 
-    modalDismissHandler = () => {
+    purchaseCancelHandler = () => {
         this.setState({purchasing: false});
+    };
+
+    purchaseProceedHandler = () => {
+        alert('NOOOOOOOO NOOOO NOO');
     };
 
     render() {
@@ -91,10 +95,16 @@ class BurgerBuilder extends Component {
 
         return (
             <React.Fragment>
-                <Modal show={this.state.purchasing}>
-                    <OrderSummary ingredients={this.state.ingredients} />
+                <Modal
+                    show={this.state.purchasing}
+                    modalClosed={this.purchaseCancelHandler}>
+                    <OrderSummary
+                        ingredients={this.state.ingredients}
+                        purchaseCancelled={this.purchaseCancelHandler}
+                        purchaseProceed={this.purchaseProceedHandler}
+                        price={this.state.totalPrice} />
                 </Modal>
-                <Burger ingredients={this.state.ingredients} sho />
+                <Burger ingredients={this.state.ingredients} />
                 <BuildControls
                     ingredientAdded={this.addIngredientHandler}
                     ingredientRemoved={this.removeIngredientHandler}
@@ -102,8 +112,6 @@ class BurgerBuilder extends Component {
                     price={this.state.totalPrice}
                     purchasable={this.state.purchasable}
                     ordered={this.purchaseHandler} />
-                <br />
-                <button style={{marginLeft: '45%'}} onClick={this.modalDismissHandler}>Dismiss Modal</button>
             </React.Fragment>
         );
     }
