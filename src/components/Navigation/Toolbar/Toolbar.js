@@ -3,6 +3,7 @@ import styled from 'styled-components';
 
 import Logo from '../../Logo/Logo';
 import NavigationItems from '../NavigationItems/NavigationItems';
+import DrawerToggle from '../SideDrawer/DrawerToggle/DrawerToggle';
 
 const Wrapper = styled.div`
     height: 56px;
@@ -33,7 +34,7 @@ const LogoContainer = styled.div`
 
 const toolbar = (props) => (
     <Wrapper>
-        <div>MENU</div>
+        <DrawerToggle clicked={props.drawerToggleClicked} />
         <LogoContainer>
             <Logo />
         </LogoContainer>

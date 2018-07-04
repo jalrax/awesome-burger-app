@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import styled from 'styled-components';
 
 import Backdrop from '../Backdrop/Backdrop';
@@ -22,16 +22,25 @@ const Wrapper = styled.div`
   }
 `;
 
-const modal = (props) => (
-    <React.Fragment>
-        <Backdrop show={props.show} clicked={props.modalClosed} />
-        <Wrapper style={{
-            transform: props.show ? 'translateY(0)' : 'translateY(-100vh)',
-            opacity: props.show ? '1' : '0'
-        }}>
-            {props.children}
-        </Wrapper>
-    </React.Fragment>
-);
+class Modal extends Component {
 
-export default modal;
+    shouldComponentUpdate(nextProps, nextState) {
+        return nextProps.show !== this.props.show;
+    };
+
+    render() {
+        return (
+            <React.Fragment>
+                <Backdrop show={this.props.show} clicked={this.props.modalClosed} />
+                <Wrapper style={{
+                    transform: this.props.show ? 'translateY(0)' : 'translateY(-100vh)',
+                    opacity: this.props.show ? '1' : '0'
+                }}>
+                    {this.props.children}
+                </Wrapper>
+            </React.Fragment>
+        );
+    }
+}
+
+export default Modal;
